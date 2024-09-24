@@ -211,22 +211,30 @@
                 }
             }
 
-            Console.WriteLine(" ENTER THER ID OF COURSE :");
-            string idc = Console.ReadLine();
-            Console.WriteLine(" ENTER THER NAME OF STUDENT :");
-            string student = Console.ReadLine();
-            foreach (string courseid in SystemEnrolle[idc])
-            { 
-            if (courseid.Contains(idc))
+            Console.Write("\nEnter ID: ");
+            string CourseID = Console.ReadLine();
+            if (SystemEnrolle.ContainsKey(CourseID)) //Checking if course  exists
             {
-                if (.ContainsValue(student))
+                Console.WriteLine("\nStudents in course: ");
+                foreach (string students in SystemEnrolle[CourseID])
                 {
-                    SystemEnrolle.Remove(student);
-                    Console.WriteLine("remove student");
+                    Console.WriteLine("Student Name = {0}", students);
                 }
-
+                Console.Write("\nEnter student name: ");
+                string StudentName = Console.ReadLine();
+                foreach (string students in SystemEnrolle[CourseID])
+                {
+                    if (students == StudentName)
+                    {
+                        SystemEnrolle[CourseID].Remove(students); //removing specific student
+                    }
+                }
+                Console.WriteLine("\nNew Students List: ");
+                foreach (string students in SystemEnrolle[CourseID])
+                {
+                    Console.WriteLine("Student Name = {0}", students);
+                }
             }
-        }
             Console.WriteLine("Enter key");
             Console.ReadKey();
         }
